@@ -1,10 +1,10 @@
 import sys
 
-def myInit(details, output):
-    output[1] = details.developmentSetFileName
-    output[2] = details.testSetFileName
-    output[3] = details.inputWord
-    output[4] = details.outputFileName
-    output[5] = details.languageVocabularySize
-    output[6] = 1 / details.languageVocabularySize
-    print(output)
+def myInit(details):
+    details.output[1] = details.developmentSetFileName
+    details.output[2] = details.testSetFileName
+    details.output[3] = details.inputWord
+    details.output[4] = details.outputFileName
+    details.output[5] = details.languageVocabularySize
+    details.output[6] = 1 / details.languageVocabularySize
+    #test
