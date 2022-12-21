@@ -26,6 +26,15 @@ class Sets():
         self.wordsCounter = Counter(self.trainingSet)
         self.valCounter = Counter(self.validationSet)
 
+def writeToOutput():
+    output = open(details.outputFileName, 'w')
+    # TODO: add name and id boaz
+    # output.write("#Students Yuval Ronen 205380132")
+    for i in range(1, 30):
+        output.write("\n" + "#Output" + str(i) + " " + str(details.output[i]))
+    output.close()
+
+
 if __name__ == '__main__':
     # input:  < development set filename >
     # < test set filename >
@@ -56,4 +65,7 @@ if __name__ == '__main__':
     #### 7
 
 
+
+
     print(details.output)
+    writeToOutput()
