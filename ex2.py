@@ -4,7 +4,7 @@ from collections import Counter
 
 from getAllwords import getAllWords
 from myInit import myInit
-from LidstoneModelTraining import lidstoneTraining
+from LidstoneModelTraining import lidstoneTraining,heldoutTraining
 
 
 
@@ -23,13 +23,12 @@ class Sets():
         self.validationSetSize = validationSetSize
         self.trainingSet = allWordsInDev[:trainingSetSize]
         self.validationSet = allWordsInDev[trainingSetSize:]
-        self.wordsCounter = Counter(self.trainingSet)
-        self.valCounter = Counter(self.validationSet)
+        self.trainingSetWordsCounter = Counter(self.trainingSet)
+        self.validationSetWordsCounter = Counter(self.validationSet)
 
 def writeToOutput():
     output = open(details.outputFileName, 'w')
-    # TODO: add name and id boaz
-    # output.write("#Students Yuval Ronen 205380132")
+    # output.write("#Students Yuval Ronen 205380132 Boaz Avraham 203668132")
     for i in range(1, 30):
         output.write("\n" + "#Output" + str(i) + " " + str(details.output[i]))
     output.close()
@@ -54,18 +53,37 @@ if __name__ == '__main__':
     trainingSetSize = round(0.9 * devWordsSize)
     validationSetSize = devWordsSize - trainingSetSize
     sets = Sets(trainingSetSize, validationSetSize)
-    lidstoneTraining(details, sets)
+    lidstoneModel = lidstoneTraining(details, sets)
 
-    #### 4
-
+    #### 4 Held out model training
+    trainingSetSize = round(0.5 * devWordsSize)
+    validationSetSize = devWordsSize - trainingSetSize
+    sets = Sets(trainingSetSize, validationSetSize)
+    heldoutModel = heldoutTraining(details, sets)
     #### 5
+    lidstoneModel.test_model()
+    heldoutModel.test_model()
+    #### 6 Models evaluation on test set
+    allWordsInTest = getAllWords(details.testSetFileName)
+    details.output[25] = len(allWordsInTest)
+    details.output[26] = lidstoneModel.perplexity(lidstoneModel.best_lamda, allWordsInTest)
+    details.output[27] = heldoutModel.perplexity(allWordsInTest)
+    details.output[28] = "L" if details.output[26] < details.output[27] else "H"
+    output29 = ""
+    for r in range(10):
+        f_lam = lidstoneModel.probability(r, lidstoneModel.best_lamda) * lidstoneModel.sets.trainingSetSize
+        f_h, N_r, t_r = heldoutModel.probability(r, True)
+        f_h *= heldoutModel.sets.trainingSetSize
+        f_lam = round(f_lam, 5)
+        f_h = round(f_h, 5)
+        output29 += "\n{}\t{}\t{}\t{}".format(f_lam, f_h, N_r, t_r)
 
-    #### 6
-
-    #### 7
+    details.output[29] = output29
 
 
 
 
-    print(details.output)
+    for x in range(len(details.output)):
+        print (str(x) +" - "+ str(details.output[x]))
+
     writeToOutput()
