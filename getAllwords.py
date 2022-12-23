@@ -1,3 +1,4 @@
+#Students Yuval Ronen 205380132, Boaz Avraham 203668132
 
 def getAllWords(file):
     """read the file and compose a list of all the words in file

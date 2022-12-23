@@ -1,4 +1,4 @@
-import math
+#Students Yuval Ronen 205380132, Boaz Avraham 203668132
 import sys
 from collections import Counter
 
@@ -28,7 +28,7 @@ class Sets():
 
 def writeToOutput():
     output = open(details.outputFileName, 'w')
-    # output.write("#Students Yuval Ronen 205380132 Boaz Avraham 203668132")
+    output.write("#Students Yuval Ronen 205380132, Boaz Avraham 203668132")
     for i in range(1, 30):
         output.write("\n" + "#Output" + str(i) + " " + str(details.output[i]))
     output.close()
@@ -76,7 +76,7 @@ if __name__ == '__main__':
         f_h *= heldoutModel.sets.trainingSetSize
         f_lam = round(f_lam, 5)
         f_h = round(f_h, 5)
-        output29 += "\n{}\t{}\t{}\t{}".format(f_lam, f_h, N_r, t_r)
+        output29 += "\n{}\t{}\t{}\t{}\t{}".format(r, f_lam, f_h, N_r, t_r)
 
     details.output[29] = output29
 
