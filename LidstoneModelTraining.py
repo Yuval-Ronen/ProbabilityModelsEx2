@@ -41,7 +41,7 @@ class LidstoneModel:
         print ("this is the sum of all the probabilites in lidstone model")
         s = sum(self.probability(r,self.best_lamda) for r in self.sets.trainingSetWordsCounter.values())
         s += sum(self.probability(r, self.best_lamda) for r in self.sets.validationSetWordsCounter.values())
-        print(s + self.details.languageVocabularySize * self.probability(0,self.best_lamda))
+        print(s + (self.details.languageVocabularySize - len(self.sets.trainingSetWordsCounter)) * self.probability(0,self.best_lamda))
 
 
 class HeldoutModel:
