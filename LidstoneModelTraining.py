@@ -1,11 +1,7 @@
 #Students Yuval Ronen 205380132, Boaz Avraham 203668132
 
 import math
-from collections import Counter
 from collections import defaultdict
-
-import numpy as np
-
 
 
 class LidstoneModel:
@@ -17,9 +13,8 @@ class LidstoneModel:
         self.start_training()
 
     def start_training(self):
-        self.perplexityDict = {
-            lam: self.perplexity(lam)
-            for lam in np.around(np.arange(0.01, 2.01, 0.01), 2)}
+        lam_values = [x/100 for x in range(1, 201)]
+        self.perplexityDict = { lam: self.perplexity(lam) for lam in lam_values}
         self.best_lamda = min(self.perplexityDict, key=self.perplexityDict.get)
 
     def probability(self, c_x, lam):
