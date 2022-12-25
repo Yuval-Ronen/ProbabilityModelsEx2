@@ -39,8 +39,8 @@ class LidstoneModel:
 
     def test_model(self):
         print ("this is the sum of all the probabilites in lidstone model")
-        s = sum(self.probability(r,self.best_lamda) for r in self.sets.trainingSetWordsCounter.values())
-        s += sum(self.probability(r, self.best_lamda) for r in self.sets.validationSetWordsCounter.values())
+        s = sum(self.probability(r, self.best_lamda) for r in self.sets.trainingSetWordsCounter.values())
+        # s += sum(self.probability(r, self.best_lamda) for r in self.sets.validationSetWordsCounter.values())
         print(s + (self.details.languageVocabularySize - len(self.sets.trainingSetWordsCounter)) * self.probability(0,self.best_lamda))
 
 
@@ -86,7 +86,8 @@ class HeldoutModel:
 
     def test_model(self):
         print ("this is the sum of all the probabilites in heldout model")
-        s = sum(self.probability(r) for r in self.count_to_event_dict.keys())
+        s = sum(self.probability(r) for r in self.sets.trainingSetWordsCounter.values())
+        # s = sum(self.probability(r) for r in self.count_to_event_dict.keys())
         print(s + self.N_0 * self.probability(0))
 
 
