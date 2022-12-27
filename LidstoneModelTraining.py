@@ -1,4 +1,4 @@
-#Students Yuval Ronen 205380132, Boaz Avraham 203668132
+#Yuval Ronen    Boaz Avraham     205380132   203668132
 
 import math
 from collections import defaultdict

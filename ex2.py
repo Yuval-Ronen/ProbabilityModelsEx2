@@ -1,4 +1,4 @@
-#Students Yuval Ronen 205380132, Boaz Avraham 203668132
+#Yuval Ronen    Boaz Avraham     205380132   203668132
 import sys
 from collections import Counter
 
@@ -28,9 +28,9 @@ class Sets():
 
 def writeToOutput():
     output = open(details.outputFileName, 'w')
-    output.write("#Students Yuval Ronen 205380132, Boaz Avraham 203668132")
+    output.write("#Yuval Ronen\tBoaz Avraham\t205380132\t203668132")
     for i in range(1, 30):
-        output.write("\n" + "#Output" + str(i) + " " + str(details.output[i]))
+        output.write("\n" + "#Output" + str(i) + "\t" + str(details.output[i]))
     output.close()
 
 
